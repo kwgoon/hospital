@@ -2,45 +2,71 @@ DROP TABLE patient CASCADE CONSTRAINT;
 DROP TABLE medical_record CASCADE CONSTRAINT;
 DROP TABLE prescription CASCADE CONSTRAINT;
 DROP TABLE treatment CASCADE CONSTRAINT;
+DROP SEQUENCE seq_pt_no;
+DROP SEQUENCE seq_mr_no;
 
---í™˜ì ë²ˆí˜¸, í™˜ì ì´ë¦„, ì£¼ë¯¼ë²ˆí˜¸, ì£¼ì†Œ, ì „í™”ë²ˆí˜¸ 
+--È¯ÀÚ ¹øÈ£, È¯ÀÚ ÀÌ¸§, ÁÖ¹Î¹øÈ£, ÁÖ¼Ò, ÀüÈ­¹øÈ£ 
 CREATE TABLE patient (
-	pt_no number(3),
-	pt_name varchar2(50),
-	pt_resident_no varchar2(50),
-	pt_address varchar2(50),
-	pt_phone varchar2(50),
-	CONSTRAINT patient_ptno_pk PRIMARY KEY (pt_no),
-	CONSTRAINT patient_ptjumin_pk UNIQUE (pt_jumin)
+   pt_no number(3),
+   pt_name varchar2(50),
+   pt_resident_no varchar2(50),
+   pt_address varchar2(50),
+   pt_phone varchar2(50),
+   CONSTRAINT patient_ptno_pk PRIMARY KEY (pt_no),
+   CONSTRAINT patient_ptjumin_pk UNIQUE (pt_resident_no)
 );
 
---ì§„ë£Œ ë²ˆí˜¸, í™˜ì ë²ˆí˜¸(fk), ì§„ë‹¨, ì§„ë£Œë‚ ì§œ
+--Áø·á ¹øÈ£, È¯ÀÚ ¹øÈ£, Áø´Ü, Áø·á³¯Â¥
 CREATE TABLE medical_record (
-	mr_no number(3),
-	pt_no number(3),
-	mr_diagnosis varchar2(50),
-	mr_date date,
-	CONSTRAINT medical_mrno_pk PRIMARY KEY (mr_no),
-	CONSTRAINT medical_ptno_fk FOREIGN KEY (pt_no) REFERENCES patient (pt_no)
+   mr_no number(3),
+   pt_no number(3),
+   mr_diagnosis varchar2(50),
+   mr_date date,
+   CONSTRAINT medical_mrno_pk PRIMARY KEY (mr_no),
+   CONSTRAINT medical_ptno_fk FOREIGN KEY (pt_no) REFERENCES patient (pt_no)
 );
 
---ì§„ë£Œ ë²ˆí˜¸(fk), ì²˜ë°©ì•½, 1ì¼ ?íšŒ, íˆ¬ì—¬ì¼
+--Áø·á ¹øÈ£, Ã³¹æ¾à, 1ÀÏ ?È¸, Åõ¿©ÀÏ
 CREATE TABLE prescription (
-	mr_no number(3),
-	medicine varchar2(50),
-	times number(1),
-	days number(1),
-	CONSTRAINT pre_mrno_fk FOREIGN KEY (mr_no) REFERENCES medical_record (mr_no)
+   mr_no number(3),
+   medicine varchar2(50),
+   times number(1),
+   days number(1),
+   CONSTRAINT pre_mrno_fk FOREIGN KEY (mr_no) REFERENCES medical_record (mr_no)
 );
 
---í™˜ì ë²ˆí˜¸(fk), ì§„ë£Œ ìƒíƒœ(ëŒ€ê¸°, ì§„ë£Œì¤‘, ì§„ë£Œì™„ë£Œ)
+--È¯ÀÚ ¹øÈ£, Áø·á »óÅÂ(´ë±â(0), Áø·áÁß(1), Áø·á¿Ï·á(»èÁ¦))
 CREATE TABLE treatment (
-	pt_no number(3),
-	state number(1),
-	CONSTRAINT treatment_ptno_fk FOREIGN KEY (pt_no) REFERENCES patient (pt_no)
+   pt_no number(3),
+   state number(1) CONSTRAINT treatment_state_ck check(state in (0, 1)),
+   CONSTRAINT treatment_ptno_fk FOREIGN KEY (pt_no) REFERENCES patient (pt_no)
 );
 
-insert into patient values (1, 'ì´ë¦„', 'ì£¼ë¯¼','ì£¼ì†Œ','í°');
-insert into medical_record values (1, 1, 'ë³‘ëª…', sysdate);
-insert into prescription values (1, 'ì•½1', 3, 3);
-insert into prescription values (1, 'ì•½2', 3, 3);
+CREATE SEQUENCE seq_pt_no; 
+CREATE SEQUENCE seq_mr_no; 
+
+-- »õ È¯ÀÚ µî·Ï ÈÄ Á¢¼ö Ã³¸® Æ®¸®°Å
+CREATE OR REPLACE TRIGGER receipt
+AFTER
+	INSERT ON patient
+	for each row
+BEGIN
+	INSERT INTO treatment VALUES(:new.pt_no, 0);
+END;
+/
+
+-- »õ Áø·á ±â·ÏÀÌ ÀúÀåµÇ¸é ÇØ´ç È¯ÀÚ Áø·á¿Ï·á Ã³¸®ÇÏ´Â Æ®¸®°Å
+CREATE OR REPLACE TRIGGER finishtreatment
+AFTER
+	INSERT ON medical_record
+	for each row
+BEGIN
+	DELETE treatment WHERE pt_no = :new.mr_no;
+END;
+/
+
+
+insert into patient values (seq_pt_no.nextval, 'ÀÌ¸§', 'ÁÖ¹Î','ÁÖ¼Ò','Æù');
+insert into medical_record values (seq_mr_no.nextval, 1, 'º´¸í', sysdate);
+insert into prescription values (1, '¾à1', 3, 3);
+insert into prescription values (1, '¾à2', 3, 3);
