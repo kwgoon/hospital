@@ -32,10 +32,9 @@ CREATE TABLE prescription (
    CONSTRAINT pre_mrno_fk FOREIGN KEY (mr_no) REFERENCES medical_record (mr_no)
 );
 
---ȯ�� ��ȣ, ��� ����(���(0), �����(1), ���Ϸ�(����))
 CREATE TABLE treatment (
    pt_no number(3),
-   state number(1) CONSTRAINT treatment_state_ck check(state in (0, 1)),
+   state number(1) CONSTRAINT treatment_state_ck CHECK (state IN (0, 1)),
    CONSTRAINT treatment_ptno_fk FOREIGN KEY (pt_no) REFERENCES patient (pt_no)
 );
 
@@ -45,7 +44,7 @@ CREATE SEQUENCE seq_mr_no;
 CREATE OR REPLACE TRIGGER receipt
 AFTER
 	INSERT ON patient
-	for each row
+	FOR EACH ROW
 BEGIN
 	INSERT INTO treatment VALUES(:new.pt_no, 0);
 END;
@@ -54,7 +53,7 @@ END;
 CREATE OR REPLACE TRIGGER finishtreatment
 AFTER
 	INSERT ON medical_record
-	for each row
+	FOR EACH ROW
 BEGIN
 	DELETE treatment WHERE pt_no = :new.mr_no;
 END;
