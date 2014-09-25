@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="Prescription">
+	
+	<resultMap id="PrescriptionResult" type="prescription">
+		<result property="no" column="PT_NO" />
+		<result property="name" column="PT_NAME" />
+		<result property="residentNo" column="PT_REGIDENTNO" />
+		<result property="address" column="PT_ADDRESS" />
+		<result property="phone" column="PT_PHONE" />
+	</resultMap>
+
+	<select id="selectAllPrescription" resultMap="PrescriptionResult">
+		SELECT * FROM prescription
+	</select>
+
+	<insert id="insertPrescriptionInfo" parameterType="java.util.List">
+		INSERT ALL
+		<foreach collection="list" item="prescription" index="index">
+			INTO prescription values (#{prescription.mrNo}, #{prescription.medicine},  #{prescription.times},  #{prescription.medicine})
+		</foreach>
+	</insert>
+
+	<delete id="deleteAllPrescription">
+		DELETE TABLE prescription
+	</delete>
 	
 </mapper>

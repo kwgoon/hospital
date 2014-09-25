@@ -1,9 +1,43 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="Patient">
-	<insert id="patientInfo">
+
+	<resultMap id="PatientResult" type="patient">
+		<result property="no" column="PT_NO"/>
+		<result property="name" column="PT_NAME"/>
+		<result property="residentNo" column="PT_REGIDENTNO"/>
+		<result property="address" column="PT_ADDRESS"/>
+		<result property="phone" column="PT_PHONE"/>
+	</resultMap>
+
+	<select id="selectAllPatient" resultMap="PatientResult">
+		SELECT * FROM patient
+	</select>
+	
+	<select id="selectPatientByResidentNo" parameterType="string" resultMap="PatientResult">
+		SELECT * FROM patient
+		WHERE pt_residentno = #{residentNo}
+	</select>
+	
+	<insert id="insertPatientInfo" parameterType="patient">
 		INSERT INTO patient
-		VALUES ( , , , , )
+		VALUES (seq_pt_no.nextval, #{name}, #{residentNo}, #{address}, #{phone})
 	</insert>
+	
+	<update id="updatePatient" parameterType="patient">
+		UPDATE patient
+		SET pt_name = #{name}, pt_residentno = #{residentNo}, pt_address = #{address}, pt_phone = #{phone}
+	</update>
+	
+	<delete id="deletePatientByResidentNo" parameterType="string">
+		DELETE TABLE patient
+		WHERE pt_residentno = #{residentNo}
+	</delete>
+	
+	<delete id="deleteAllPatient">
+		DELETE TABLE patient
+	</delete>
+	
 </mapper>
