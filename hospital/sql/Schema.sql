@@ -59,7 +59,7 @@ BEGIN
 END;
 /
 
-insert into patient values (seq_pt_no.nextval, '�̸�', '�ֹ�','�ּ�','��');
-insert into medical_record values (seq_mr_no.nextval, 1, '����', sysdate);
-insert into prescription values (1, '��1', 3, 3);
-insert into prescription values (1, '��2', 3, 3);
+insert into patient values (seq_pt_no.nextval, 'name', 'jumin','add','phone');
+insert into medical_record values (seq_mr_no.nextval, 1, 'die', sysdate);
+insert into prescription values (1, 'medicine1', 3, 3);
+insert into prescription values (1, 'medicine2', 3, 3);

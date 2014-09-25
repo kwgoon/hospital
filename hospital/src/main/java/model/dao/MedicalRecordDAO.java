@@ -36,7 +36,7 @@ public class MedicalRecordDAO {
 		SqlSession session = DBUtil.getSqlSession(true);
 		int result = 0;
 		try {
-			result = session.insert("MedicalRecord.insertMedicalRecord", mr);
+			result = session.insert("MedicalRecord.insertMedicalRecordInfo", mr);
 		} finally {
 			session.close();
 		}
