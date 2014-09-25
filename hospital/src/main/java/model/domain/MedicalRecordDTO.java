@@ -1,6 +1,8 @@
 package model.domain;
 
-public class MedicalRecordDTO {
+import java.io.Serializable;
+
+public class MedicalRecordDTO implements Serializable {
 	private int no;
 	private int ptNo;
 	private String diagnosis;
