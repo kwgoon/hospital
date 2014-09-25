@@ -26,4 +26,14 @@
 			<version>1.2.14</version>
 		</dependency>
 	</dependencies>
+	<distributionManagement>
+		<repository>
+			<id>repo</id>
+			<url>https://github.com/need4spd/need4spd-maven-repo/raw/master/releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshot-repo</id>
+			<url>https://github.com/need4spd/need4spd-maven-repo/raw/master/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
 </project>

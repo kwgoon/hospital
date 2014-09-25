@@ -17,8 +17,7 @@ public class StartView {
 		TreatmentDAO.deleteAllTreatment();
 		PatientDAO.deleteAllPatient();
 
-		// PatientDAO.insertPatient(new PatientDTO("이름", "주민번호3", "주소", "전화번호"));
-		// PatientDAO.deleteAllPatient();
+		 PatientDAO.insertPatient(new PatientDTO("이름", "주민번호3", "주소", "전화번호"));
 
 		// 환자 전체 목록 검색
 		List<PatientDTO> ptList = PatientDAO.selectAllPatient();
