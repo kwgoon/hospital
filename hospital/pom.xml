@@ -13,33 +13,6 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-
-	<plugin>
-		<groupId>com.github.github</groupId>
-		<artifactId>site-maven-plugin</artifactId>
-		<version>0.7</version>
-		<configuration>
-			<message>Maven artifacts for ${project.version}</message>
-			<noJekyll>true</noJekyll>
-			<outputDirectory>${project.build.directory}/mvn-repo</outputDirectory>
-			<branch>refs/heads/mvn-repo</branch>
-			<merge>true</merge> <!-- 이것도 추가 -->
-			<includes>
-				<include>**/*</include>
-			</includes>
-			<repositoryName>깃헙리포지토리이름</repositoryName>
-			<repositoryOwner>깃헙ID</repositoryOwner>
-		</configuration>
-		<executions>
-			<execution>
-				<goals>
-					<goal>site</goal>
-				</goals>
-				<phase>deploy</phase>
-			</execution>
-		</executions>
-	</plugin>
-
 	<dependencies>
 		<dependency>
 			<groupId>org.mybatis</groupId>
@@ -50,11 +23,6 @@
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>1.2.14</version>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.mylyn.github</groupId>
-			<artifactId>org.eclipse.egit.github.core</artifactId>
-			<version>2.0.3</version>
 		</dependency>
 	</dependencies>
 </project>
