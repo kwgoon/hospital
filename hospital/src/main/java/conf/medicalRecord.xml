@@ -31,12 +31,12 @@
 	</update>
 
 	<delete id="deleteRecordByNo" parameterType="int">
-		DELETE TABLE medical_record
+		DELETE FROM medical_record
 		WHERE pt_residentno = #{residentNo}
 	</delete>
 
 	<delete id="deleteAllRecord">
-		DELETE TABLE medical_record
+		DELETE FROM medical_record
 	</delete>
 
 </mapper>

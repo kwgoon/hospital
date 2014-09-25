@@ -32,12 +32,12 @@
 	</update>
 	
 	<delete id="deletePatientByResidentNo" parameterType="string">
-		DELETE TABLE patient
+		DELETE FROM patient
 		WHERE pt_residentno = #{residentNo}
 	</delete>
 	
 	<delete id="deleteAllPatient">
-		DELETE TABLE patient
+		DELETE FROM patient
 	</delete>
 	
 </mapper>
