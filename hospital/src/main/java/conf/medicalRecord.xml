@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="MedicalRecord">
+
+	<resultMap id="MedicalRecordResult" type="patient">
+		<result property="no" column="MR_NO" />
+		<result property="ptNo" column="PT_NO" />
+		<result property="diagnosis" column="MR_DIAGNOSIS" />
+		<result property="date" column="MR_DATE" />
+	</resultMap>
+
+	<select id="selectAllMedicalRecord" resultMap="MedicalRecordResult">
+		SELECT * FROM medical_record
+	</select>
+
+	<select id="selectMedicalRecordByNo" parameterType="int" resultMap="MedicalRecordResult">
+		SELECT * FROM medical_record
+		WHERE mr_no = #{no}
+	</select>
+	
+	<insert id="insertMedicalRecordInfo" parameterType="patient">
+		INSERT INTO medical_record
+		VALUES (seq_mr_no.nextval, #{ptNo}, #{diagnosis}, #{date})
+	</insert>
+
+	<update id="updateMedicalRecord" parameterType="patient">
+		UPDATE medical_record
+		SET	mr_no = #{no}, pt_no = #{ptNo}, mr_diagnosis = #{diagnosis}, mr_date = #{date}
+	</update>
+
+	<delete id="deleteMedicalRecordByNo" parameterType="int">
+		DELETE medical_record
+		WHERE mr_no = #{no}
+	</delete>
+	
+	<delete id="deleteAllMedicalRecord">
+		DELETE FROM medical_record
+	</delete>
+</mapper>
