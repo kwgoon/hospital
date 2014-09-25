@@ -36,6 +36,6 @@
 	</delete>
 	
 	<delete id="deleteAllMedicalRecord">
-		DELETE FROM medical_record
+		DELETE medical_record
 	</delete>
 </mapper>

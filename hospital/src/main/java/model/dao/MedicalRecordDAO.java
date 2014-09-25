@@ -10,22 +10,22 @@ import util.DBUtil;
 
 public class MedicalRecordDAO {
 
-	static public List<MedicalRecordDTO> seleteMedicalRecordByPtNo(String ptNo) {
+	static public List<MedicalRecordDTO> selectMedicalRecordByPtNo(String ptNo) {
 		SqlSession session = DBUtil.getSqlSession();
 		List<MedicalRecordDTO> mrList = null;
 		try {
-			mrList = session.selectList("MedicalRecord.seleteMedicalRecordByPtNo", ptNo);
+			mrList = session.selectList("MedicalRecord.selectMedicalRecordByPtNo", ptNo);
 		} finally {
 			session.close();
 		}
 		return mrList;
 	}
 
-	static public MedicalRecordDTO seleteMedicalRecordByNo(String no) {
+	static public MedicalRecordDTO selectMedicalRecordByNo(String no) {
 		SqlSession session = DBUtil.getSqlSession();
 		MedicalRecordDTO mr = null;
 		try {
-			mr = session.selectOne("MedicalRecord.seleteMedicalRecordByNo", no);
+			mr = session.selectOne("MedicalRecord.selectMedicalRecordByNo", no);
 		} finally {
 			session.close();
 		}

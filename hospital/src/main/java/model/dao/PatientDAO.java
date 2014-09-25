@@ -10,22 +10,22 @@ import util.DBUtil;
 
 public class PatientDAO {
 
-	static public PatientDTO seletePatient(String residentNo) {
+	static public PatientDTO selectPatient(String residentNo) {
 		SqlSession session = DBUtil.getSqlSession();
 		PatientDTO pt = null;
 		try {
-			pt = session.selectOne("Patient.seletePatient", residentNo);
+			pt = session.selectOne("Patient.selectPatient", residentNo);
 		} finally {
 			session.close();
 		}
 		return pt;
 	}
 
-	static public List<PatientDTO> seleteAllPatient() {
+	static public List<PatientDTO> selectAllPatient() {
 		SqlSession session = DBUtil.getSqlSession();
 		List<PatientDTO> ptList = null;
 		try {
-			ptList = session.selectList("Patient.seleteAllPatient");
+			ptList = session.selectList("Patient.selectAllPatient");
 		} finally {
 			session.close();
 		}

@@ -10,11 +10,11 @@ import util.DBUtil;
 
 public class TreatmentDAO {
 	
-	static public List<TreatmentDTO> seleteAllTreatment() {
+	static public List<TreatmentDTO> selectAllTreatment() {
 		SqlSession session = DBUtil.getSqlSession();
 		List<TreatmentDTO> tmList = null;
 		try {
-			tmList = session.selectList("Treatment.seleteAllTreatment");
+			tmList = session.selectList("Treatment.selectAllTreatment");
 		} finally {
 			session.close();
 		}

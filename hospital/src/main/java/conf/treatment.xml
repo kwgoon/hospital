@@ -19,7 +19,7 @@
 	</insert>
 
 	<delete id="deleteAllTreatment">
-		DELETE FROM treatment
+		DELETE treatment
 	</delete>
 	
 </mapper>

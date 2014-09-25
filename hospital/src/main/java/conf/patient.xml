@@ -7,7 +7,7 @@
 	<resultMap id="PatientResult" type="patient">
 		<result property="no" column="PT_NO"/>
 		<result property="name" column="PT_NAME"/>
-		<result property="residentNo" column="PT_REGIDENTNO"/>
+		<result property="residentNo" column="PT_RESIDENT_NO"/>
 		<result property="address" column="PT_ADDRESS"/>
 		<result property="phone" column="PT_PHONE"/>
 	</resultMap>
@@ -18,7 +18,7 @@
 	
 	<select id="selectPatientByResidentNo" parameterType="string" resultMap="PatientResult">
 		SELECT * FROM patient
-		WHERE pt_residentno = #{residentNo}
+		WHERE pt_resident_no = #{residentNo}
 	</select>
 	
 	<insert id="insertPatientInfo" parameterType="patient">
@@ -28,16 +28,16 @@
 	
 	<update id="updatePatient" parameterType="patient">
 		UPDATE patient
-		SET pt_name = #{name}, pt_residentno = #{residentNo}, pt_address = #{address}, pt_phone = #{phone}
+		SET pt_name = #{name}, pt_resident_no = #{residentNo}, pt_address = #{address}, pt_phone = #{phone}
 	</update>
 	
 	<delete id="deletePatientByResidentNo" parameterType="string">
-		DELETE FROM patient
-		WHERE pt_residentno = #{residentNo}
+		DELETE patient
+		WHERE pt_resident_no = #{residentNo}
 	</delete>
 	
 	<delete id="deleteAllPatient">
-		DELETE FROM patient
+		DELETE patient
 	</delete>
 	
 </mapper>

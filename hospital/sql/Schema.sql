@@ -58,8 +58,3 @@ BEGIN
 	DELETE treatment WHERE pt_no = :new.mr_no;
 END;
 /
-
-insert into patient values (seq_pt_no.nextval, 'name', 'jumin','add','phone');
-insert into medical_record values (seq_mr_no.nextval, 1, 'die', sysdate);
-insert into prescription values (1, 'medicine1', 3, 3);
-insert into prescription values (1, 'medicine2', 3, 3);

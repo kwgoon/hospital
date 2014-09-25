@@ -11,11 +11,11 @@ import util.DBUtil;
 
 public class PrescriptionDAO {
 
-	static public List<PrescriptionDTO> seleteAllPrescription() {
+	static public List<PrescriptionDTO> selectAllPrescription() {
 		SqlSession session = DBUtil.getSqlSession();
 		List<PrescriptionDTO> psList = null;
 		try {
-			psList = session.selectList("Prescription.seleteAllPrescription");
+			psList = session.selectList("Prescription.selectAllPrescription");
 		} finally {
 			session.close();
 		}
