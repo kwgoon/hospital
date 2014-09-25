@@ -1,6 +1,8 @@
 package model.domain;
 
-public class PrescriptionDTO {
+import java.io.Serializable;
+
+public class PrescriptionDTO implements Serializable {
 	private int mrNo;
 	private String medicine;
 	private int times;

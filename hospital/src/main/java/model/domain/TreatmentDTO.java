@@ -1,6 +1,8 @@
 package model.domain;
 
-public class TreatmentDTO {
+import java.io.Serializable;
+
+public class TreatmentDTO implements Serializable {
 	private int ptNo;
 	private int state;
 
