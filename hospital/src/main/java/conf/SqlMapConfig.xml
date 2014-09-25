@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
-	"dtd/mybatis-3-config.dtd">
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias type="model.domain.Dept01Bean" alias="dept01"/>
+		<typeAlias type="model.domain.MedicalRecordDTO" alias="medicalRecord"/>
+		<typeAlias type="model.domain.PatientDTO" alias="patient"/>
+		<typeAlias type="model.domain.PrescriptionDTO" alias="prescription"/>
+		<typeAlias type="model.domain.TreatmentDTO" alias="treatment"/>
 	</typeAliases>
 	<environments default="env">			
 		<environment id="env">
@@ -18,6 +20,9 @@
 		</environment>
 	</environments>
 	<mappers>
-		<mapper resource="conf/dept01.xml" />		
+		<mapper resource="conf/medicalRecord.xml" />
+		<mapper resource="conf/patient.xml" />
+		<mapper resource="conf/prescription.xml" />
+		<mapper resource="conf/treatment.xml" />
 	</mappers>
 </configuration>

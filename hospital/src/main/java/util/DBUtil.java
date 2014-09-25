@@ -15,8 +15,7 @@ public class DBUtil {
 		InputStream inputStream = null;
 		try {
 			inputStream = Resources.getResourceAsStream("conf/SqlMapConfig.xml");
-			SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
-			factory = builder.build(inputStream);
+			factory = new SqlSessionFactoryBuilder().build(inputStream);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

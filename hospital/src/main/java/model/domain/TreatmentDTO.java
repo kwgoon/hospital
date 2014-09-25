@@ -1,11 +1,10 @@
-package model.dto;
+package model.domain;
 
 public class TreatmentDTO {
 	private int ptNo;
 	private int state;
 
-	public TreatmentDTO() {
-	}
+	public TreatmentDTO() { }
 
 	public TreatmentDTO(int ptNo, int state) {
 		this.ptNo = ptNo;

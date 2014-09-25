@@ -1,4 +1,4 @@
-package model.dto;
+package model.domain;
 
 public class PrescriptionDTO {
 	private int mrNo;
@@ -6,8 +6,7 @@ public class PrescriptionDTO {
 	private int times;
 	private int days;
 
-	public PrescriptionDTO() {
-	}
+	public PrescriptionDTO() { }
 
 	public PrescriptionDTO(int mrNo, String medicine, int times, int days) {
 		this.mrNo = mrNo;

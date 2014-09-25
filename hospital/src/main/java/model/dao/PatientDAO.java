@@ -1,6 +1,6 @@
 package model.dao;
 
-import model.dto.PatientDTO;
+import model.domain.PatientDTO;
 
 import org.apache.ibatis.session.SqlSession;
 

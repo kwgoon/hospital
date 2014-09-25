@@ -1,4 +1,4 @@
-package model.dto;
+package model.domain;
 
 public class MedicalRecordDTO {
 	private int no;
@@ -6,8 +6,7 @@ public class MedicalRecordDTO {
 	private String diagnosis;
 	private String date;
 
-	public MedicalRecordDTO() {
-	}
+	public MedicalRecordDTO() {	}
 
 	public MedicalRecordDTO(int ptNo, String diagnosis, String date) {
 		this.ptNo = ptNo;
