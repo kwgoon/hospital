@@ -5,11 +5,10 @@
 <mapper namespace="MedicalRecord">
 
 	<resultMap id="MedicalRecordResult" type="patient">
-		<result property="no" column="PT_NO" />
-		<result property="name" column="PT_NAME" />
-		<result property="residentNo" column="PT_REGIDENTNO" />
-		<result property="address" column="PT_ADDRESS" />
-		<result property="phone" column="PT_PHONE" />
+		<result property="no" column="MR_NO" />
+		<result property="ptNo" column="PT_NO" />
+		<result property="diagnosis" column="MR_DIAGNOSIS" />
+		<result property="date" column="MR_DATE" />
 	</resultMap>
 
 	<select id="selectAllRecord" resultMap="MedicalRecordResult">

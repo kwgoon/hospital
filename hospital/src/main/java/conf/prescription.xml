@@ -5,11 +5,10 @@
 <mapper namespace="Prescription">
 	
 	<resultMap id="PrescriptionResult" type="prescription">
-		<result property="no" column="PT_NO" />
-		<result property="name" column="PT_NAME" />
-		<result property="residentNo" column="PT_REGIDENTNO" />
-		<result property="address" column="PT_ADDRESS" />
-		<result property="phone" column="PT_PHONE" />
+		<result property="mrNo" column="MR_NO" />
+		<result property="medicine" column="MEDICINE" />
+		<result property="times" column="TIMES" />
+		<result property="days" column="DAYS" />
 	</resultMap>
 
 	<select id="selectAllPrescription" resultMap="PrescriptionResult">
@@ -19,7 +18,7 @@
 	<insert id="insertPrescriptionInfo" parameterType="java.util.List">
 		INSERT ALL
 		<foreach collection="list" item="prescription" index="index">
-			INTO prescription values (#{prescription.mrNo}, #{prescription.medicine},  #{prescription.times},  #{prescription.medicine})
+			INTO prescription values (#{prescription.mrNo}, #{prescription.medicine},  #{prescription.times},  #{prescription.days})
 		</foreach>
 	</insert>
 

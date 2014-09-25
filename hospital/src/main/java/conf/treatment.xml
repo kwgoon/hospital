@@ -4,6 +4,22 @@
 
 <mapper namespace="Treatment">
 	
-	
+	<resultMap id="TreatmentResult" type="treatment">
+		<result property="ptNo" column="PT_NO" />
+		<result property="state" column="STATE" />
+	</resultMap>
+
+	<select id="selectAllTreatment" resultMap="TreatmentResult">
+		SELECT * FROM treatment
+	</select>
+
+	<insert id="insertTreatmentInfo" parameterType="treatment">
+		INSERT INTO treatment
+		VALUES (#{ptNo}, #{state})
+	</insert>
+
+	<delete id="deleteAllTreatment">
+		DELETE TABLE treatment
+	</delete>
 	
 </mapper>
