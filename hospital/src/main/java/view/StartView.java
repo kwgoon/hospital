@@ -17,15 +17,15 @@ public class StartView {
 		TreatmentDAO.deleteAllTreatment();
 		PatientDAO.deleteAllPatient();
 
-		 PatientDAO.insertPatient(new PatientDTO("이름", "주민번호3", "주소", "전화번호"));
+		 PatientDAO.insertPatient(new PatientDTO("name", "jumin", "adress", "phone"));
 
-		// 환자 전체 목록 검색
+		// Patient all Print
 		List<PatientDTO> ptList = PatientDAO.selectAllPatient();
 		for (PatientDTO data : ptList) {
 			System.out.println(data);
 		}
 
-		// 진료 상태 목록
+		// Prescription List Print
 		List<PrescriptionDTO> pList = PrescriptionDAO.selectAllPrescription();
 		for (PrescriptionDTO data : pList) {
 			System.out.println(data);
