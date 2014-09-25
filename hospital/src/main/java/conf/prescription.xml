@@ -23,7 +23,7 @@
 	</insert>
 
 	<delete id="deleteAllPrescription">
-		DELETE TABLE prescription
+		DELETE prescription
 	</delete>
 	
 </mapper>
